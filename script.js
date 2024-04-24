@@ -7,15 +7,31 @@ const collectEmployees = function () {
   //   Notes- create employee objects is an array (employeesArray) that has employee info (firstName, lastName, salary)
   //   Notes- use prompts to ask for information, need to push information into array
   let employeesArray = [];
-  const collectEmployees = function () {
-    let currentEmployee = []
+  const employeeData = function () {
+    let currentEmployee = {};
     currentEmployee.firstName = prompt("First Name");
     currentEmployee.lastName = prompt("Last Name");
     currentEmployee.salary = prompt("Salary");
     employeesArray.push(currentEmployee);
   }
-  collectEmployees()
-  return employeesArray
+  const getYesOrNo = function () {
+    let response;
+    do {
+      response = prompt("Do you want to add another employee? Please enter Yes or No:").toLowerCase()
+    } while (response !== 'yes' && response !== 'no');
+    return response;
+  };
+  const repeat = function () {
+    let response = getYesOrNo();
+    while (response === 'yes') {
+      employeeData();
+      response = getYesOrNo();
+    }
+  };
+  employeeData();
+  repeat();
+  console.log(employeesArray);
+  return employeesArray;
 }
 
 // Display the average salary
